@@ -1,0 +1,80 @@
+source markupparser.tcl
+namespace import ::markupparser::*
+
+
+array set htmlStyles {
+    m,1     <tt>
+    m,0     </tt>
+    i,1     <i>
+    i,0     </i>
+    b,1     <b>
+    b,0     </b>
+    h,1     {<font face="serif" size="+2"><b>}
+    h,0     </b></font>
+    s,1     {<font face="sans-serif" size="-2">}
+    s,0     </font>
+    x,1     <s>
+    x,0     </s>
+}
+
+# -embeddedhtml 1|0   If 1, the markup can have embedded HTML.
+#                     If 0, quote <, >, and &.
+
+proc premarkup {markup} {
+    set taglist [parse $markup]
+
+    while {[llength $taglist] > 0} {
+        set tag [lshift taglist]
+        set value [lshift taglist]
+
+        switch -exact $tag {
+            PRE {
+                if {[regexp {^\s*\n\s*$} $value]} {
+                    puts "Matches: <$value>"
+                } else {
+                    puts "Doesn't match <$value>"
+                }
+            }
+        }
+    }
+}
+
+
+proc lshift {listvar} {
+    upvar $listvar args
+      
+    if {[llength $args] == 0} {
+        set arg ""
+    } elseif {[llength $args] == 1} {
+        set arg [lindex $args 0]
+        set args ""
+    } else {
+        set arg [lindex $args 0]
+        set args [lrange $args 1 end]
+    }
+    
+    return $arg
+}
+
+proc showParseResults {markup} {
+    set taglist [parse $markup]
+
+    foreach {tag value} $taglist {
+        puts [list $tag $value]
+    }
+}
+
+if {$argc == 0} {
+    puts "Usage: parse.tcl files..."
+    exit
+}
+
+
+set f [open [lindex $argv 0] r]
+set markup [read $f]
+close $f
+
+premarkup $markup
+# showParseResults $markup
+
+

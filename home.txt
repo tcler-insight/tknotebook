@@ -1,0 +1,24 @@
+Hi! Welcome to your new Notebook!1.3 
+
+Before [[Image:Mediawiki.png]] After 
+
+Bad <nowiki>[!foo!]</nowiki> one. 
+
+
+* Try things in the [[Playground|]],  sometimes called the [[Playground]]. 
+
+
+* A [[Nonexistent Page]]. A [[Nonexistent Page|]]. 
+
+Text Before 
+* Level 1 
+** Level 2 
+*** Level 3 <br>Text after 
+
+
+* This is the time for the next grand experiment in Notebook markup to   come into play and be formatted for the good%<br>   of many and all many folks and people, not to mention me and taking   turns and lots of that lorem ipsum%<br>   stuff. 
+* This is the next line. 
+
+This is the time for the next grand experiment in Notebook markup to come into play and be formatted for the good%<br> of many and all many folks and people, not to mention me and taking turns and lots of that lorem ipsum%<br> stuff. 
+
+This is the next line. 

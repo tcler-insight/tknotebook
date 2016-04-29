@@ -1,0 +1,83 @@
+#-----------------------------------------------------------------------
+# TITLE:
+#	tooltip.tcl
+#
+# AUTHOR:
+#	Will Duquette
+#
+# DESCRIPTION:
+#       Tool tips for notebook's gui package.
+#
+#-----------------------------------------------------------------------
+
+#-----------------------------------------------------------------------
+# Tooltip type
+#
+# The tooltip command is an instance of TooltipType, so that we can
+# have options.
+
+snit::type ::gui::TooltipType {
+    #-------------------------------------------------------------------
+    # Options
+
+    option -font {Helvetica 12}
+    option -background "#FFFFC0"
+    option -topbackground black
+    option -foreground black
+    option -delay 600
+
+    #-------------------------------------------------------------------
+    # Variables
+
+    # Tool tip text.  An array, indexed by window name
+    variable tiptext
+
+    # Tool tip timeout, or {}
+    variable timeout {}
+
+    # Tool tip window, or {}
+    variable tipwin {}
+
+    #-------------------------------------------------------------------
+    # Constructor
+
+    # Implicit
+
+    #-------------------------------------------------------------------
+    # Public methods
+
+    method register {window text} {
+        set tiptext($window) $text
+
+        bind $window <Enter> [mymethod Enter $window]
+        bind $window <Leave> [mymethod Leave $window]
+    }
+
+    method unregister {window} {
+        unset tiptext($window)
+    }
+
+    #-------------------------------------------------------------------
+    # Private Methods
+
+    
+    method Enter {window} {
+
+    }
+
+    method Popup {window} {
+
+    }
+
+    method Leave {window} {
+
+    }
+
+
+
+
+
+
+
+}
+
